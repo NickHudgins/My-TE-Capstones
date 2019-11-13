@@ -1,6 +1,119 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Capstone.Web.Models.Park>
+
+@{
+    ViewData["Title"] = "Index";
 }
 
-<br />
-<p>Yes, this is the Index Page of the Home controller. Who are you?</p>
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ParkCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParkName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Acreage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ElevationOfFeet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MilesOfTrail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfCampsites)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Climate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearFounded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnnualVisitorCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuoteSource)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EntryFee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfAnimalSpecies)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParkCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParkName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Acreage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ElevationOfFeet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MilesOfTrail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfCampsites)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Climate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearFounded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnnualVisitorCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuoteSource)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntryFee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfAnimalSpecies)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

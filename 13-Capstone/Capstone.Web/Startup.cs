@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Capstone.Web.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,8 +30,17 @@ namespace Capstone.Web
                 options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                // Sets session expiration to 20 minuates
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                options.Cookie.HttpOnly = true;
+            });
+         
+            services.AddTransient<IParkDao>(m => new ParkDao(Startup.ConnectionString));
+            services.AddTransient<IWeatherDao>(m => new WeatherDao(Startup.ConnectionString));
+            services.AddTransient<ISurveyDao>(m => new SurveyDao(Startup.ConnectionString));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -48,13 +58,15 @@ namespace Capstone.Web
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            ConnectionString = Configuration["ConnectionStrings:DefaultConnection"];
         }
+        public static string ConnectionString { get; private set; }
     }
 }
