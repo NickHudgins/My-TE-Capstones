@@ -16,7 +16,6 @@
             <th>
                 State
             </th>
-           
             <th>
                 Description
             </th>
@@ -28,7 +27,7 @@
         <tr>
             <td>
             <a asp-action="Detail" asp-route-parkCode="@item.ParkCode">
-              <span class="parkImage"><img src="~/img/parks/@(item.ParkCode).jpg"/></span></a>
+                <span class="parkImage"><img src="~/img/parks/@(item.ParkCode).jpg"/></span></a>
 
             </td>
             <td>
@@ -37,47 +36,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.State)
             </td>
-            @*<td>
-            @Html.DisplayFor(modelItem => item.Acreage)
-        </td>*@
-            @*<td>
-            @Html.DisplayFor(modelItem => item.ElevationOfFeet)
-        </td>*@
-            @*<td>
-            @Html.DisplayFor(modelItem => item.MilesOfTrail)
-        </td>*@
-            @*<td>
-            @Html.DisplayFor(modelItem => item.NumberOfCampsites)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Climate)
-        </td>*@
-            @*<td>
-            @Html.DisplayFor(modelItem => item.YearFounded)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnnualVisitorCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quote)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuoteSource)
-        </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.ParkDescription)
             </td>
-            @*<td>
-            @Html.DisplayFor(modelItem => item.EntryFee)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfAnimalSpecies)
-        </td>*@
-            @*<td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>*@
         </tr>
 }
     </tbody>
