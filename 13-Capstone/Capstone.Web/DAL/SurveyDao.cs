@@ -43,5 +43,15 @@ namespace Capstone.Web.DAL
 
                 return survey;
         }
+
+        public Survey FavoritePark()
+        {
+            Survey survey = new Survey();
+
+
+
+
+            return survey;
+        }
     }
 }

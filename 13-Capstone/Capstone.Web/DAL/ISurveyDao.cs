@@ -9,5 +9,7 @@ namespace Capstone.Web.DAL
     public interface ISurveyDao
     {
         Survey SaveSurvey(Survey survey);
+
+        Survey FavoritePark();
     }
 }
