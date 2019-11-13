@@ -1,6 +1,26 @@
-﻿@{
+﻿@model List<Park>
+
+@{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Today's Survey</h2>
+<p>We at the National Park Service love hearing from our guests! Please tell us about your park visit!</p>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div class="form-group">
+                <select name="parkName">
+                    @foreach (Park park in Model)
+                    {
+                        <option value="@park.ParkCode">@park.ParkName</option>
+                    }
+                </select>
+            </div>
 
+            <div class="form-group">
+                <input type="submit" id="Register" value="Register" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
