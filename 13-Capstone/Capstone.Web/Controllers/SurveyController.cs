@@ -44,7 +44,8 @@ namespace Capstone.Web.Controllers
 
         public IActionResult FavoritePark()
         {
-            return View();
+            List<Survey> surveys = surveyDao.FavoritePark();
+            return View(surveys);
         }
         
        

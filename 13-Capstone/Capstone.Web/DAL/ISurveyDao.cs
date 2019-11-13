@@ -10,6 +10,6 @@ namespace Capstone.Web.DAL
     {
         Survey SaveSurvey(Survey survey);
 
-        Survey FavoritePark();
+        List<Survey> FavoritePark();
     }
 }
