@@ -5,33 +5,29 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Capstone.Web.Models;
+using Capstone.Web.DAL;
 
 namespace Capstone.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private IParkDao parkDao;
+        public HomeController(IParkDao parkDao)
+        {
+            this.parkDao = parkDao;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            List<Park> parks = parkDao.GetAllParks();
+            return View(parks);
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        
+        public IActionResult Detail(string parkCode)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            Park park = parkDao.GetPark(parkCode);
+            return View(park);
         }
-
-        public IActionResult Detail()
-        {
-            return View();
-        }
-
-        public IActionResult Detail(int ParkCode)
-        {
-            return View(Park);
-        }
-
-      
-
+        
     }
 }

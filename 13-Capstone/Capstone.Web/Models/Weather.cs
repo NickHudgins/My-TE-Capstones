@@ -15,7 +15,7 @@ namespace Capstone.Web.Models
         public int High { get; set; }
         public int Forecast { get; set; }
 
-        
+
         public decimal TempConvert(int temp)
         {
             decimal convertedTemp = (Convert.ToDecimal((temp - 32) / 1.8));
@@ -24,44 +24,48 @@ namespace Capstone.Web.Models
 
         public string TempWarningMsg(int temp)
         {
+            string tempMsg = "";
             int TempDiff = Low - High;
             if (High > 75)
             {
-                return "Warning: Outside temperature is above 75. Please bring an extra gallon of water!";
+                tempMsg = "Warning: Outside temperature is above 75. Please bring an extra gallon of water!";
             }
             else if (TempDiff > 20)
             {
-                return "Please wear breathable layers.";
+                tempMsg = "Please wear breathable layers.";
             }
             else if (Low > 20)
             {
-                return "Warning: Outside temperature is below 20 degrees.You maybe exposed to frigid temperatures.";
+                tempMsg = "Warning: Outside temperature is below 20 degrees.You maybe exposed to frigid temperatures.";
             }
+            return tempMsg;
         }
 
-        public string ForecastWarningMsg()
+        public string ForecastWarningMsg(string forecast)
         {
-            foreach (var item in List<Weather>)
-            {
-                if (Forecast = rain)
-                {
-                    return "Please pack rain gear and wear waterproof shoes!");
-                }
-                else if (Forecast = snow)
-                {
-                    return "Please pack snowshoes!");
-                }
-                else if (Forecast = thunderstorm)
-                {
-                    return "Please seek shelter and avoid hiking on exposed ridges!";
-                }
-                else if (Forecast = sun)
-                {
-                    return "Please pack sunblock!";
-                }
-                return 
-            }
 
+            string forecastMsg = "";
+
+            if (forecast == "rain")
+            {
+                forecastMsg ="Please pack rain gear and wear waterproof shoes!";
+            }
+            else if (forecast == "snow")
+            {
+                forecastMsg = "Please pack snowshoes!";
+            }
+            else if (forecast == "thunderstorm")
+            {
+                forecastMsg = "Please seek shelter and avoid hiking on exposed ridges!";
+            }
+            else if (forecast == "sun")
+            {
+                forecastMsg = "Please pack sunblock!";
+            }
+            return forecastMsg;
         }
+
+
     }
 }
+

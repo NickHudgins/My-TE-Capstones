@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Capstone.Web.DAL
 {
-    interface IParkDao
+    public interface IParkDao
     {
         List<Park> GetAllParks();
         Park GetPark(string parkCode);
+      
     }
 }

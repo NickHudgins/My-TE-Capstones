@@ -13,20 +13,12 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.SurveyId)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.ParkCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EmailAddress)
+                Number of People Who Love This Park!
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.State)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ActivityLevel)
-            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -34,25 +26,12 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.SurveyId)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.ParkCode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EmailAddress)
+                @Html.DisplayFor(modelItem => item.SurveyCount)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActivityLevel)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+
         </tr>
 }
     </tbody>
