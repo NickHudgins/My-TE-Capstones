@@ -1,1 +1,21 @@
-﻿
+﻿body {
+    background-color: #ffffff;
+    width: 90%;
+    font-family: sans-serif;
+    margin: 0 auto;
+}
+div.navbar-header{
+    padding-bottom: 5px;
+}
+
+
+
+header {
+    
+    margin: 25px;
+}
+
+    header img {
+        padding-top:30px;
+        height: 110px;
+    }
