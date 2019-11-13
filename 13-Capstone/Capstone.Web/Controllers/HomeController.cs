@@ -5,20 +5,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Capstone.Web.Models;
+using Capstone.Web.DAL;
 
 namespace Capstone.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private string connectionString = "Data Source =.\\sqlexpress;Initial Catalog = NPGeek; Integrated Security = True";
+
         public IActionResult Index()
         {
-            return View();
-        }
-        
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            ParkDao dao = new ParkDao(connectionString);
+            List<Park> parks = dao.GetAllParks();
+            return View(parks);
         }
 
         public IActionResult Detail()
