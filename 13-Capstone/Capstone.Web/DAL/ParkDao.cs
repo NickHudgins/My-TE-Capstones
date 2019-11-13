@@ -21,7 +21,7 @@ namespace Capstone.Web.DAL
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT parkName, state, parkDescription FROM park", conn);
+            SqlCommand cmd = new SqlCommand("SELECT parkCode, parkName, state, parkDescription FROM park", conn);
 
             SqlDataReader reader = cmd.ExecuteReader();
 
@@ -29,7 +29,8 @@ namespace Capstone.Web.DAL
             {
                 Park park = new Park();
 
-                 park.ParkName= Convert.ToString(reader["parkName"]);
+                park.ParkCode = Convert.ToString(reader["parkCode"]);
+                park.ParkName= Convert.ToString(reader["parkName"]);
                 park.State = Convert.ToString(reader["state"]);
                 park.Description = Convert.ToString(reader["parkDescription"]);
 

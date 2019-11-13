@@ -1,25 +1,25 @@
 ﻿@model IEnumerable<Capstone.Web.Models.Park>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "National Parks Geek";
 }
 
-<h2>Index</h2>
+<h2>National Parks Geek</h2>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
 <table class="table">
     <thead>
         <tr>
-            @*<th>
-                @Html.DisplayNameFor(model => model.ParkCode)
-            </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.ParkName)
+                Image
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.State)
+                Park Name
+            </th>
+            <th>
+                State
             </th>
             @*<th>
                 @Html.DisplayNameFor(model => model.Acreage)
@@ -49,7 +49,7 @@
                 @Html.DisplayNameFor(model => model.QuoteSource)
             </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                Description
             </th>
             @*<th>
                 @Html.DisplayNameFor(model => model.EntryFee)
@@ -63,9 +63,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.ParkCode)
-            </td>*@
+            <td>
+                <span class="parkImage"><img src="~/img/parks/@(item.ParkCode).jpg"/></span>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ParkName)
             </td>
@@ -73,46 +73,46 @@
                 @Html.DisplayFor(modelItem => item.State)
             </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.Acreage)
-            </td>*@
+            @Html.DisplayFor(modelItem => item.Acreage)
+        </td>*@
             @*<td>
-                @Html.DisplayFor(modelItem => item.ElevationOfFeet)
-            </td>*@
+            @Html.DisplayFor(modelItem => item.ElevationOfFeet)
+        </td>*@
             @*<td>
-                @Html.DisplayFor(modelItem => item.MilesOfTrail)
-            </td>*@
+            @Html.DisplayFor(modelItem => item.MilesOfTrail)
+        </td>*@
             @*<td>
-                @Html.DisplayFor(modelItem => item.NumberOfCampsites)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Climate)
-            </td>*@
+            @Html.DisplayFor(modelItem => item.NumberOfCampsites)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Climate)
+        </td>*@
             @*<td>
-                @Html.DisplayFor(modelItem => item.YearFounded)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnnualVisitorCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quote)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuoteSource)
-            </td>*@
+            @Html.DisplayFor(modelItem => item.YearFounded)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnnualVisitorCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quote)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuoteSource)
+        </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.EntryFee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfAnimalSpecies)
-            </td>*@
+            @Html.DisplayFor(modelItem => item.EntryFee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfAnimalSpecies)
+        </td>*@
             @*<td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>*@
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
         </tr>
 }
     </tbody>
