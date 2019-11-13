@@ -1,4 +1,4 @@
-﻿@model List<Park>
+﻿@model Survey
 
 @{
     ViewData["Title"] = "Index";
@@ -10,12 +10,87 @@
     <div class="col-md-4">
         <form asp-action="Index">
             <div class="form-group">
-                <select name="parkName">
-                    @foreach (Park park in Model)
+                <label asp-for="@Model.ParkCode">Favorite National Park</label> <select name="parkName">
+                    @foreach (Park park in Model.ParkList)
                     {
-                        <option value="@park.ParkCode">@park.ParkName</option>
+                        <option value="@park.ParkCode" asp-for="@Model.ParkCode">@park.ParkName</option>
+
                     }
+
                 </select>
+                <span asp-validation-for="ParkCode" class="text-warning"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EmailAddress">Your Email</label>
+                <input asp-for="EmailAddress" type="text" name="emailAddress" />
+                <span asp-validation-for="EmailAddress" class="text-warning"></span>
+            </div>
+
+            <div class="form-group">
+                <label>State of Residence</label> <select asp-for="State">
+                    <option value="AL">Alabama</option>
+                    <option Value="AK">Alaska</option>
+                    <option Value="AZ">Arizona</option>
+                    <option Value="AR">Arkansas</option>
+                    <option Value="CA">California</option>
+                    <option Value="CO">Colorado</option>
+                    <option Value="CT">Connecticut</option>
+                    <option Value="DC">District of Columbia</option>
+                    <option Value="DE">Delaware</option>
+                    <option Value="FL">Florida</option>
+                    <option Value="GA">Georgia</option>
+                    <option Value="HI">Hawaii</option>
+                    <option Value="ID">Idaho</option>
+                    <option Value="IL">Illinois</option>
+                    <option Value="IN">Indiana</option>
+                    <option Value="IA">Iowa</option>
+                    <option Value="KS">Kansas</option>
+                    <option Value="KY">Kentucky</option>
+                    <option Value="LA">Louisiana</option>
+                    <option Value="ME">Maine</option>
+                    <option Value="MD">Maryland</option>
+                    <option Value="MA">Massachusetts</option>
+                    <option Value="MI">Michigan</option>
+                    <option Value="MN">Minnesota</option>
+                    <option Value="MS">Mississippi</option>
+                    <option Value="MO">Missouri</option>
+                    <option Value="MT">Montana</option>
+                    <option Value="NE">Nebraska</option>
+                    <option Value="NV">Nevada</option>
+                    <option Value="NH">New Hampshire</option>
+                    <option Value="NJ">New Jersey</option>
+                    <option Value="NM">New Mexico</option>
+                    <option Value="NY">New York</option>
+                    <option Value="NC">North Carolina</option>
+                    <option Value="ND">North Dakota</option>
+                    <option Value="OH">Ohio</option>
+                    <option Value="OK">Oklahoma</option>
+                    <option Value="OR">Oregon</option>
+                    <option Value="PA">Pennsylvania</option>
+                    <option Value="RI">Rhode Island</option>
+                    <option Value="SC">South Carolina</option>
+                    <option Value="SD">South Dakota</option>
+                    <option Value="TN">Tennessee</option>
+                    <option Value="TX">Texas</option>
+                    <option Value="UT">Utah</option>
+                    <option Value="VT">Vermont</option>
+                    <option Value="VA">Virginia</option>
+                    <option Value="WA">Washington</option>
+                    <option Value="WV">West Virginia</option>
+                    <option Value="WI">Wisconsin</option>
+                    <option Value="WY">Wyoming</option>
+                </select>
+                <span asp-validation-for="State" class="text-warning"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="@Model.ActivityLevel">Activity Level</label>
+                <input type="radio" name="@Model.ActivityLevel" value="inactive">Inactive
+                <input type="radio" name="@Model.ActivityLevel" value="sedentary">Sedentary
+                <input type="radio" name="@Model.ActivityLevel" value="active">Active
+                <input type="radio" name="@Model.ActivityLevel" value="extremely active">Extemely Active
+                <span asp-validation-for="ActivityLevel" class="text-warning"></span>
             </div>
 
             <div class="form-group">

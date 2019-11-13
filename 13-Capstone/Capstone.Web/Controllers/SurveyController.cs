@@ -21,12 +21,14 @@ namespace Capstone.Web.Controllers
 
         public IActionResult Index()
         {
-            List<Park> parks = parkDao.GetAllParks();
+            Survey survey = new Survey();
+            survey.ParkList = parkDao.GetAllParks();
 
-            return View(parks);
+            return View(survey);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Index(Survey survey)
         {
             if(!ModelState.IsValid)
@@ -34,10 +36,12 @@ namespace Capstone.Web.Controllers
                 return View(survey);
             }
 
-
+            surveyDao.SaveSurvey(survey);
 
             return RedirectToAction("FavoritePark");
         }
+
+
         public IActionResult FavoritePark()
         {
             return View();
