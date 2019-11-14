@@ -7,10 +7,7 @@ namespace Capstone.Web.DAL
 {
     public class WeatherDao : IWeatherDao
     {
-        private readonly string connectionString;
-        public WeatherDao(string connectionString)
-        {
-            this.connectionString = connectionString;
-        }
+     
+
     }
 }

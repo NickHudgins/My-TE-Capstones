@@ -1,5 +1,5 @@
 ﻿body {
-    background-color: #ffffff;
+    background-color: #ffff;
     width: 90%;
     font-family: sans-serif;
     margin: 0 auto;
@@ -7,8 +7,6 @@
 div.navbar-header{
     padding-bottom: 5px;
 }
-
-
 
 header {
     
@@ -19,3 +17,12 @@ header {
         padding-top:30px;
         height: 110px;
     }
+
+
+
+container.park-image {
+    height: 200px;
+}
+
+
+
