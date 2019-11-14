@@ -1,17 +1,21 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Text;
-//using OpenQA.Selenium;
-//using OpenQA.Selenium.Chrome;
-//using OpenQA.Selenium.Support.UI;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+//using Openqa.selenium;
+//using Openqa.selenium.chrome;
+//using Openqa.selenium.support.ui;
 
-//namespace CapstoneTests.cs.SurveyController
-//{
-//    class SurveyTest
-//    {
-//        private ChromeDriver chromeDriver;
-//        private WebDriverWait wait;
+namespace capstonetests.cs.surveycontroller
+{
 
-//        public SurveyPage(Chrome)
-//    }
-//}
+    class SurveyTest
+    {
+        string connectionString = "Data Source =.\\sqlexpress;Initial Catalog = NPGeek; Integrated Security = True";
+
+
+        //private chromedriver chromedriver;
+        //private webdriverwait wait;
+
+        //public surveypage(chrome)
+    }
+}
