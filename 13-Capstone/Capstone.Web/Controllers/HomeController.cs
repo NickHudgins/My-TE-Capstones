@@ -25,17 +25,28 @@ namespace Capstone.Web.Controllers
             return View(parks);
         }
 
-        public IActionResult Detail(string parkCode)
+        public IActionResult Detail(string parkCode, string IsCelsius)
         {
+            if(HttpContext.Session.GetString("IsCelsius") == null)
+            {
+                HttpContext.Session.SetString("IsCelsius", "0");
+            }
+            if(IsCelsius != null)
+            {
+                HttpContext.Session.SetString("IsCelsius", IsCelsius);
+            }
+            
             Park park = parkDao.GetPark(parkCode);
+            park.IsCelsius = Convert.ToInt32(HttpContext.Session.GetString("IsCelsius"));
             return View(park);
         }
+
 
         public bool IsFarenheitOrCelsius(Park park)
         {
             bool isCelsius = false;
             HttpContext.Session.SetInt32(IsCelsius, park.IsCelsius);
-            if(park.IsCelsius == 1)
+            if (park.IsCelsius == 1)
             {
                 isCelsius = true;
             }

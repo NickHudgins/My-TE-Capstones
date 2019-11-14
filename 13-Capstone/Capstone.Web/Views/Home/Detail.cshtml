@@ -50,9 +50,9 @@
 
 
     <h3>Five Day Weather Forecast</h3>
-    <form asp-action="Detail">
-        <button asp-for="@Model.IsCelsius" name="Farenheit" type="submit" value="0">Farenheit</button>
-        <button asp-for="@Model.IsCelsius" name="Farenheit" type="submit" value="1">Celsius</button>
+    <form asp-action="Detail" asp-route-parkCode="@Model.ParkCode">
+        <button name="IsCelsius" type="submit" value="0">Farenheit</button>
+        <button name="IsCelsius" type="submit" value="1">Celsius</button>
     </form>
         Weather Forecast Image
         @foreach (Weather weather in Model.Forecast)
@@ -62,7 +62,20 @@
             </div>
             <div>
                 <p>
-                    @weather.FullForecastMsg @weather.Low @weather.High
+                    @weather.FullForecastMsg
+
+                    @if (Model.IsCelsius == 1)
+                    {
+                        <span>@weather.TempConvert(weather.Low).ToString("N2")&#176;C</span>
+
+                        <span>@weather.TempConvert(weather.High).ToString("N2")&#176;C</span>
+                    }
+                    else
+                    {
+                        <span>@weather.Low&#176;F</span>
+
+                        <span>@weather.High&#176;F</span>
+                    }
                 </p>
             </div>
         }
