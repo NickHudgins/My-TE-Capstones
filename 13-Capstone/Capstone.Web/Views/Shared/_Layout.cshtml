@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - National Parks Geek.Web</title>
-    
+
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -18,28 +18,25 @@
     </environment>
 </head>
 <body>
-    <header>
-        <img src="~/img/logo.png" alt="National Parks Geek logo"/>
-    </header>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <header>
-                    <img src="~/img/logo.png" alt="National Parks Geek logo" />
-                </header>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+                <img src="~/img/logo.png" alt="National Parks Geek logo" />
+                @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
+                </button>*@
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li id="home"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li id="survey"><a asp-area="" asp-controller="Survey" asp-action="Index">Survey</a></li>
+                    </ul>
+                </div>
                 @*<a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Capstone.Web</a>*@
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Survey" asp-action="Index">Survey</a></li>
-                </ul>
-            </div>
+
         </div>
     </nav>
 

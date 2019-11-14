@@ -4,81 +4,99 @@
     ViewData["Title"] = "Detail";
 }
 
-<h2>@Html.DisplayFor(model => model.ParkName)</h2>
-
 <div>
-
-    <h4>Park</h4>
-
-    <hr />
-
-
-    <div class="container">
-        <div>
-            <img src="~/img/parks/@(Model.ParkCode).jpg" alt="Park picture">
-        </div>
-        <dl class="dl-horizontal">
-            <p>Located in @Model.State, @Model.ParkName boasts @Model.Acreage.ToString("N0") acres in a @Model.Climate.ToLower() climate. Founded in @Model.YearFounded, @Model.AnnualVisitorCount.ToString("N0") people visit this park every year!</p>
-            <p>Come see our @Model.NumberOfAnimalSpecies unique animals along @Model.MilesOfTrail miles of trail. The park rises to an elevation of @Model.ElevationOfFeet feet.</p>
-            @if (Model.NumberOfCampsites == 0)
-            {
-                <p>Unfortunately there are no campsites at @(Model.ParkName).</p>
-            }
-            else
-            {
-                <p>Come camp in one of our @Model.NumberOfCampsites campsites!</p>
-            }
-
-            @if (Model.EntryFee == 0)
-            {
-                <p>Entrance to the park is free!</p>
-            }
-            else
-            {
-                <p>Entry to the park is only @(Model.EntryFee.ToString("C2")).</p>
-            }
-
-            <p>@Model.ParkDescription</p>
-
-            <p>
-                "@Model.InspirationalQuote"
-                </br>
-                &mdash;@Model.InspirationalQuoteSource
-            </p>
-        </dl>
+    <div>
+        <img class="detail-image" src="~/img/parks/@(Model.ParkCode).jpg" alt="Park picture">
     </div>
 
+    <h2 class="strong">@Html.DisplayFor(model => model.ParkName)</h2>
+    <hr />
+    <div class="quote-grid">
+        <p class="quote">
+            "@Model.InspirationalQuote"
+        </p>
 
-    <h3>Five Day Weather Forecast</h3>
-    <form asp-action="Detail" asp-route-parkCode="@Model.ParkCode">
-        <button name="IsCelsius" type="submit" value="0">Farenheit</button>
-        <button name="IsCelsius" type="submit" value="1">Celsius</button>
-    </form>
-        Weather Forecast Image
+        <p class="quote-source">
+            &mdash;@Model.InspirationalQuoteSource
+        </p>
+        <hr />
+    </div>
+
+    <p>@Model.ParkDescription</p>
+
+    <ul>
+        <li>Located in @Model.State, @Model.ParkName boasts @Model.Acreage.ToString("N0") acres in a @Model.Climate.ToLower() climate. Founded in @Model.YearFounded, @Model.AnnualVisitorCount.ToString("N0") people visit this park every year!</li>
+        <li>Come see our @Model.NumberOfAnimalSpecies unique animals along @Model.MilesOfTrail miles of trail. The park rises to an elevation of @Model.ElevationOfFeet feet.</li>
+
+        @if (Model.NumberOfCampsites == 0)
+        {
+            <li>There is no camping at @(Model.ParkName).</li>
+        }
+        else
+        {
+            <li>Come camp in one of our @Model.NumberOfCampsites campsites!</li>
+        }
+
+        @if (Model.EntryFee == 0)
+        {
+            <p>Entrance to the park is free!</p>
+        }
+        else
+        {
+            <li>Entry to the park is only @(Model.EntryFee.ToString("C2")).</li>
+        }
+    </ul>
+
+
+
+    <h3 class="strong">Five Day Weather Forecast</h3>
+    <div class="weather">
         @foreach (Weather weather in Model.Forecast)
         {
-            <div>
-                <img src="~/img/weather/@weather.WeatherImage" alt="@weather.WeatherImage" />
-            </div>
-            <div>
-                <p>
-                    @weather.FullForecastMsg
-
-                    @if (Model.IsCelsius == 1)
+            <div class="weather-item">
+                <div>
+                    @if (weather.FiveDayForecastValue == 1)
                     {
-                        <span>@weather.TempConvert(weather.Low).ToString("N2")&#176;C</span>
-
-                        <span>@weather.TempConvert(weather.High).ToString("N2")&#176;C</span>
+                        <h4 class="strong">Today's Weather</h4>
                     }
-                    else
+                    @if (weather.FiveDayForecastValue == 2)
                     {
-                        <span>@weather.Low&#176;F</span>
-
-                        <span>@weather.High&#176;F</span>
+                        <h4 class="strong">Tommorow's Weather</h4>
                     }
-                </p>
+                    @if (weather.FiveDayForecastValue > 2)
+                    {
+                        <h4 class="strong">Weather @(weather.FiveDayForecastValue) days from today</h4>
+                    }
+                </div>
+                <div>
+                    <img class="weather-image" src="~/img/weather/@weather.WeatherImage" alt="@weather.WeatherImage" />
+                </div>
+                <div>
+                    <p>
+                        @weather.FullForecastMsg
+                        <br />
+                        @if (Model.IsCelsius == 1)
+                        {
+                            <span><strong>Low </strong>@weather.TempConvert(weather.Low).ToString("N2")&#176;C</span>
+
+                            <span><strong>High </strong>@weather.TempConvert(weather.High).ToString("N2")&#176;C</span>
+                        }
+                        else
+                        {
+                            <span><strong>Low </strong>@weather.Low&#176;F</span>
+
+                            <span><strong>High </strong>@weather.High&#176;F</span>
+                        }
+                    </p>
+                </div>
             </div>
         }
-        <div>
-            <a asp-action="Index">Back to Home</a>
-        </div>
+    </div>
+
+    <form asp-action="Detail" asp-route-parkCode="@Model.ParkCode">
+        <button name="IsCelsius" type="submit" value="0">Fahrenheit</button>
+        <button name="IsCelsius" type="submit" value="1">Celsius</button>
+    </form>
+    <div>
+        <a asp-action="Index">Back to Home</a>
+    </div>

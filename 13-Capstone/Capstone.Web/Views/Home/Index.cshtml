@@ -8,7 +8,6 @@
     <thead>
         <tr>
             <th>
-                Image
             </th>
             <th>
                 Park Name
@@ -23,23 +22,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-            <a asp-action="Detail" asp-route-parkCode="@item.ParkCode">
-                <span class="parkImage"><img src="~/img/parks/@(item.ParkCode).jpg"/></span></a>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Detail" asp-route-parkCode="@item.ParkCode">
+                        <span class="parkImage"><img src="~/img/parks/@(item.ParkCode).jpg" /></span>
+                    </a>
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ParkName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ParkDescription)
-            </td>
-        </tr>
-}
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParkName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+
+                <td id="DESCRIPTION">
+
+                    @Html.DisplayFor(modelItem => item.ParkDescription)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

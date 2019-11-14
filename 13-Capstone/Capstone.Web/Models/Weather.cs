@@ -98,7 +98,7 @@ namespace Capstone.Web.Models
                 {
                     forecastMsg = "Please pack snowshoes!";
                 }
-                else if (Forecast == "thunderstorm")
+                else if (Forecast == "thunderstorms")
                 {
                     forecastMsg = "Please seek shelter and avoid hiking on exposed ridges!";
                 }
