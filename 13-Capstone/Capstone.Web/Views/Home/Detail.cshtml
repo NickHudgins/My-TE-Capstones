@@ -10,15 +10,17 @@
             <img class="detail-image" src="~/img/parks/@(Model.ParkCode).jpg" alt="Park picture">
         </div>
 
-        <h2>@Html.DisplayFor(model => model.ParkName)</h2>
+        <h2 class="strong">@Html.DisplayFor(model => model.ParkName)</h2>
         <hr />
-        <dl class="dl-horizontal">
-            <p>
-                "@Model.InspirationalQuote"
-                </br>
-                &mdash;@Model.InspirationalQuoteSource
-            </p>
+            <div class="quote-grid">
+                <p class="quote">
+                    "@Model.InspirationalQuote"
+                </p>
 
+                <p class="quote-source">
+                    &mdash;@Model.InspirationalQuoteSource
+                </p>
+            </div>
             <p>Located in @Model.State, @Model.ParkName boasts @Model.Acreage.ToString("N0") acres in a @Model.Climate.ToLower() climate. Founded in @Model.YearFounded, @Model.AnnualVisitorCount.ToString("N0") people visit this park every year!</p>
             <p>Come see our @Model.NumberOfAnimalSpecies unique animals along @Model.MilesOfTrail miles of trail. The park rises to an elevation of @Model.ElevationOfFeet feet.</p>
 
@@ -42,12 +44,10 @@
 
             <p>@Model.ParkDescription</p>
 
-
-        </dl>
     </div>
 
 
-    <h3>Five Day Weather Forecast</h3>
+    <h3 class="strong">Five Day Weather Forecast</h3>
     <div class="weather">
         @foreach (Weather weather in Model.Forecast)
         {
@@ -55,15 +55,15 @@
                 <div>
                     @if (weather.FiveDayForecastValue == 1)
                     {
-                        <h4>Today's Weather</h4>
+                        <h4 class="strong">Today's Weather</h4>
                     }
                     @if (weather.FiveDayForecastValue == 2)
                     {
-                        <h4>Tommorow's Weather</h4>
+                        <h4 class="strong">Tommorow's Weather</h4>
                     }
                     @if (weather.FiveDayForecastValue > 2)
                     {
-                        <h4>Weather @(weather.FiveDayForecastValue) days from today.</h4>
+                        <h4 class="strong">Weather @(weather.FiveDayForecastValue) days from today.</h4>
                     }
                 </div>
                 <div>
@@ -72,7 +72,7 @@
                 <div>
                     <p>
                         @weather.FullForecastMsg
-                        <br/>
+                        <br />
                         @if (Model.IsCelsius == 1)
                         {
                             <span><strong>Low </strong>@weather.TempConvert(weather.Low).ToString("N2")&#176;C</span>
@@ -92,7 +92,7 @@
     </div>
 
     <form asp-action="Detail" asp-route-parkCode="@Model.ParkCode">
-        <button name="IsCelsius" type="submit" value="0">Farenheit</button>
+        <button name="IsCelsius" type="submit" value="0">Fahrenheit</button>
         <button name="IsCelsius" type="submit" value="1">Celsius</button>
     </form>
     <div>

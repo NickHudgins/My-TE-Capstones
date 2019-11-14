@@ -40,3 +40,28 @@ container.park-image {
 .detail-image{
     width: 100%;
 }
+
+.strong{
+    font-weight: 700; 
+}
+
+.quote-grid{
+    display: grid;
+    grid-template-areas:
+        'quote'
+        'source'
+
+}
+
+.quote {
+    font-style: italic;
+    font-family: Georgia, serif;
+    font-size: x-large;
+    grid-area: quote;
+}
+
+.quote-source{
+    font-size: larger;
+    grid-area: source;
+    text-align: right;
+}
