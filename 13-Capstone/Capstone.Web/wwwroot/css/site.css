@@ -8,8 +8,6 @@ div.navbar-header{
     padding-bottom: 5px;
 }
 
-
-
 header {
     
     margin: 25px;
@@ -19,3 +17,12 @@ header {
         padding-top:30px;
         height: 110px;
     }
+
+
+
+container.park-image {
+    height: 200px;
+}
+
+
+

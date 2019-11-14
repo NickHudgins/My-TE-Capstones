@@ -14,6 +14,7 @@ namespace Capstone.Web.DAL
         {
             this.connectionString = connectionString;
         }
+
         public List<Park> GetAllParks()
         {
             List<Park> parks = new List<Park>();
@@ -30,7 +31,7 @@ namespace Capstone.Web.DAL
                 Park park = new Park();
 
                 park.ParkCode = Convert.ToString(reader["parkCode"]);
-                park.ParkName= Convert.ToString(reader["parkName"]);
+                park.ParkName = Convert.ToString(reader["parkName"]);
                 park.State = Convert.ToString(reader["state"]);
                 park.ParkDescription = Convert.ToString(reader["parkDescription"]);
 
@@ -38,6 +39,8 @@ namespace Capstone.Web.DAL
             }
             return parks;
         }
+
+
         public Park GetPark(string parkCode)
         {
             Park park = new Park();
@@ -45,8 +48,6 @@ namespace Capstone.Web.DAL
             conn.Open();
 
             SqlCommand cmd = new SqlCommand("SELECT * FROM park WHERE parkCode = @parkCode", conn);
-
-            
             cmd.Parameters.AddWithValue("@parkCode", parkCode);
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
@@ -66,9 +67,35 @@ namespace Capstone.Web.DAL
                 park.InspirationalQuoteSource = Convert.ToString(reader["inspirationalQuoteSource"]);
                 park.EntryFee = Convert.ToInt32(reader["entryFee"]);
                 park.NumberOfAnimalSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"]);
+
+               
             }
-         
+            reader.Close();
+
+            //GET FORECAST FOR ONE PARK THAT WAS SELECTED AND SORT BY DAY
+            using (SqlCommand weathercmd = new SqlCommand("SELECT * FROM weather WHERE parkCode = @parkCode ORDER BY fiveDayForecastValue", conn))
+            {
+                weathercmd.Parameters.AddWithValue("@parkCode", park.ParkCode);
+                using (SqlDataReader weatherReader = weathercmd.ExecuteReader())
+                {
+                    park.Forecast = new List<Weather>();
+                    while (weatherReader.Read())
+                    {
+                        park.Forecast.Add(new Weather
+                        {
+                            //create object properties 
+                            FiveDayForecastValue = Convert.ToInt32(weatherReader["fiveDayForecastValue"]),
+                            High = Convert.ToInt32(weatherReader["high"]),
+                            Low = Convert.ToInt32(weatherReader["low"]),
+                            Forecast = Convert.ToString(weatherReader["forecast"]),
+                            ParkCode = Convert.ToString(weatherReader["parkCode"])
+                        });
+                    }
+                    weatherReader.Close();
+                }
+            }
             return park;
+
         }
     }
 }

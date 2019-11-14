@@ -39,7 +39,7 @@ namespace Capstone.Web
             });
          
             services.AddTransient<IParkDao>(m => new ParkDao(Startup.ConnectionString));
-            services.AddTransient<IWeatherDao>(m => new WeatherDao(Startup.ConnectionString));
+            
             services.AddTransient<ISurveyDao>(m => new SurveyDao(Startup.ConnectionString));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
