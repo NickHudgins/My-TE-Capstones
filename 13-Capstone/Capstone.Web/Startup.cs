@@ -31,17 +31,20 @@ namespace Capstone.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddDistributedMemoryCache();
+
             services.AddSession(options =>
             {
-                // Sets session expiration to 20 minuates
-                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                // Sets session expiration to 5 minuates
+                options.IdleTimeout = TimeSpan.FromMinutes(5);
                 options.Cookie.HttpOnly = true;
             });
          
             services.AddTransient<IParkDao>(m => new ParkDao(Startup.ConnectionString));
             
             services.AddTransient<ISurveyDao>(m => new SurveyDao(Startup.ConnectionString));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddMvc().
+                SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +61,8 @@ namespace Capstone.Web
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            // Tells our application to use session
             app.UseSession();
             app.UseMvc(routes =>
             {
