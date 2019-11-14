@@ -4,21 +4,29 @@
     ViewData["Title"] = "Detail";
 }
 
-<h2>@Html.DisplayFor(model => model.ParkName)</h2>
-
 <div>
-    <hr />
+    
 
     <div class="container">
         <div>
-            <img src="~/img/parks/@(Model.ParkCode).jpg" alt="Park picture">
+            <img class="detail-image" src="~/img/parks/@(Model.ParkCode).jpg" alt="Park picture">
         </div>
+
+        <h2>@Html.DisplayFor(model => model.ParkName)</h2>
+        <hr />
         <dl class="dl-horizontal">
+            <p>
+                "@Model.InspirationalQuote"
+                </br>
+                &mdash;@Model.InspirationalQuoteSource
+            </p>
+
             <p>Located in @Model.State, @Model.ParkName boasts @Model.Acreage.ToString("N0") acres in a @Model.Climate.ToLower() climate. Founded in @Model.YearFounded, @Model.AnnualVisitorCount.ToString("N0") people visit this park every year!</p>
             <p>Come see our @Model.NumberOfAnimalSpecies unique animals along @Model.MilesOfTrail miles of trail. The park rises to an elevation of @Model.ElevationOfFeet feet.</p>
+
             @if (Model.NumberOfCampsites == 0)
             {
-                <p>Unfortunately there are no campsites at @(Model.ParkName).</p>
+                <p>There is no camping at @(Model.ParkName).</p>
             }
             else
             {
@@ -36,45 +44,59 @@
 
             <p>@Model.ParkDescription</p>
 
-            <p>
-                "@Model.InspirationalQuote"
-                </br>
-                &mdash;@Model.InspirationalQuoteSource
-            </p>
+
         </dl>
     </div>
 
 
     <h3>Five Day Weather Forecast</h3>
+    <div class="weather">
+        @foreach (Weather weather in Model.Forecast)
+        {
+            <div class="weather-item">
+                <div>
+                    @if (weather.FiveDayForecastValue == 1)
+                    {
+                        <h4>Today's Weather</h4>
+                    }
+                    @if (weather.FiveDayForecastValue == 2)
+                    {
+                        <h4>Tommorow's Weather</h4>
+                    }
+                    @if (weather.FiveDayForecastValue > 2)
+                    {
+                        <h4>Weather @(weather.FiveDayForecastValue) days from today.</h4>
+                    }
+                </div>
+                <div>
+                    <img src="~/img/weather/@weather.WeatherImage" alt="@weather.WeatherImage" />
+                </div>
+                <div>
+                    <p>
+                        @weather.FullForecastMsg
+                        <br/>
+                        @if (Model.IsCelsius == 1)
+                        {
+                            <span><strong>Low </strong>@weather.TempConvert(weather.Low).ToString("N2")&#176;C</span>
+
+                            <span><strong>High </strong>@weather.TempConvert(weather.High).ToString("N2")&#176;C</span>
+                        }
+                        else
+                        {
+                            <span><strong>Low </strong>@weather.Low&#176;F</span>
+
+                            <span><strong>High </strong>@weather.High&#176;F</span>
+                        }
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+
     <form asp-action="Detail" asp-route-parkCode="@Model.ParkCode">
         <button name="IsCelsius" type="submit" value="0">Farenheit</button>
         <button name="IsCelsius" type="submit" value="1">Celsius</button>
     </form>
-        Weather Forecast Image
-        @foreach (Weather weather in Model.Forecast)
-        {
-            <div>
-                <img src="~/img/weather/@weather.WeatherImage" alt="@weather.WeatherImage" />
-            </div>
-            <div>
-                <p>
-                    @weather.FullForecastMsg
-
-                    @if (Model.IsCelsius == 1)
-                    {
-                        <span>@weather.TempConvert(weather.Low).ToString("N2")&#176;C</span>
-
-                        <span>@weather.TempConvert(weather.High).ToString("N2")&#176;C</span>
-                    }
-                    else
-                    {
-                        <span>@weather.Low&#176;F</span>
-
-                        <span>@weather.High&#176;F</span>
-                    }
-                </p>
-            </div>
-        }
-        <div>
-            <a asp-action="Index">Back to Home</a>
-        </div>
+    <div>
+        <a asp-action="Index">Back to Home</a>
+    </div>

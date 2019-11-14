@@ -24,5 +24,19 @@ container.park-image {
     height: 200px;
 }
 
+.weather{
+    display: flex;
 
+}
 
+.weather-item {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+}
+
+.detail-image{
+    width: 100%;
+}
