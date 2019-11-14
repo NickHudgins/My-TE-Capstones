@@ -66,19 +66,20 @@ namespace Capstone.Web.Models
             get
             {
                 string tempMsg = "";
-                int TempDiff = Low - High;
+                int TempDiff = High - Low;
                 if (High > 75)
                 {
-                    tempMsg = "Warning: Outside temperature is above 75. Please bring an extra gallon of water!";
+                    tempMsg = tempMsg + "Outside temperature will rise dangerously high. Please bring an extra gallon of water! ";
                 }
-                else if (TempDiff > 20)
+                if (Low < 20)
                 {
-                    tempMsg = "Warning: Please wear breathable layers.";
+                    tempMsg = tempMsg + "Outside temperature will fall dangerously low. You maybe exposed to frigid temperatures!";
                 }
-                else if (Low < 20)
+                if (TempDiff > 20)
                 {
-                    tempMsg = "Warning: Outside temperature is below 20 degrees.You maybe exposed to frigid temperatures!";
+                    tempMsg = tempMsg + "Temperatures are expected to change. Please wear breathable layers.";
                 }
+
                 return tempMsg;
             }
         }
@@ -101,7 +102,7 @@ namespace Capstone.Web.Models
                 {
                     forecastMsg = "Please seek shelter and avoid hiking on exposed ridges!";
                 }
-                else if (Forecast == "sun")
+                else if (Forecast == "sunny")
                 {
                     forecastMsg = "Please pack sunblock!";
                 }
