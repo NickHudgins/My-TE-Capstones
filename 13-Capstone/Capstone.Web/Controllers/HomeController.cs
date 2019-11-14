@@ -28,6 +28,5 @@ namespace Capstone.Web.Controllers
             Park park = parkDao.GetPark(parkCode);
             return View(park);
         }
-        
     }
 }
