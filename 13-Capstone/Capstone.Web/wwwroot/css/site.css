@@ -73,29 +73,25 @@ div.form-group {
 }
 
 .detail-image {
-    width: 100%;
+    width: 75%;
 }
 
 .strong {
     font-weight: 700;
 }
 
-.quote-grid {
-    display: grid;
-    grid-template-areas: 'quote' 'source';
-    border: thin;
-    border-color: black;
-}
 
 .quote {
     font-style: italic;
     font-family: Georgia, serif;
     font-size: x-large;
-    grid-area: quote;
 }
 
 .quote-source {
     font-size: larger;
-    grid-area: source;
     text-align: right;
+}
+
+.weather-image{
+    width: 50%;
 }
