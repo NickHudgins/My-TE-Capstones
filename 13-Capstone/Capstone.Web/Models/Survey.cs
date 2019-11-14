@@ -26,5 +26,7 @@ namespace Capstone.Web.Models
         public List<Park> ParkList { get; set; }
 
         public int SurveyCount { get; set; }
+
+        public string ParkName { get; set; }
     }
 }

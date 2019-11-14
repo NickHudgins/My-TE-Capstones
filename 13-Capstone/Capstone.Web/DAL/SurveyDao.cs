@@ -66,7 +66,8 @@ namespace Capstone.Web.DAL
                         Survey survey = new Survey()
                         {
                             ParkCode = Convert.ToString(reader["parkCode"]),
-                            SurveyCount = Convert.ToInt32(reader["park_count"])
+                            SurveyCount = Convert.ToInt32(reader["park_count"]),
+                            ParkName = Convert.ToString(reader["parkName"])
                         };
 
                         surveys.Add(survey);

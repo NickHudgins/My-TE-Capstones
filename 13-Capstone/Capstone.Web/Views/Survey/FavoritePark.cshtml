@@ -4,16 +4,16 @@
     ViewData["Title"] = "FavoritePark";
 }
 
-<h2>FavoritePark</h2>
+<h2>Our Most Popular Parks!</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ParkCode)
+
+            </th>
+            <th>
+                Park
             </th>
             <th>
                 Number of People Who Love This Park!
@@ -23,16 +23,20 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ParkCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SurveyCount)
-            </td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img class="parkImage" src="~/img/parks/@(item.ParkCode).jpg" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParkName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SurveyCount)
+                </td>
 
-        </tr>
-}
+            </tr>
+        }
     </tbody>
 </table>

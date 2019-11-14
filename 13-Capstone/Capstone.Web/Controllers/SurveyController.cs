@@ -33,6 +33,7 @@ namespace Capstone.Web.Controllers
         {
             if(!ModelState.IsValid)
             {
+                survey.ParkList = parkDao.GetAllParks();
                 return View(survey);
             }
 
