@@ -90,7 +90,7 @@
                     <input type="radio" asp-for="ActivityLevel" value="sedentary">Sedentary
                     <input type="radio" asp-for="ActivityLevel" value="active">Active
                     <input type="radio" asp-for="ActivityLevel" value="extremely active">Extemely Active
-                    <span asp-validation-for="ActivityLevel" class="text-warning"></span>
+                    
                 </div>*@
             <div class="PhysicalLevels">
                 <label asp-for="@Model.ActivityLevel">Activity Level</label>
@@ -106,6 +106,7 @@
                 <div class="Extemely Active">
                     <input type="radio" asp-for="ActivityLevel" value="sedentary">Extemely Active
                 </div>
+                <span asp-validation-for="ActivityLevel" class="text-warning"></span>
             </div>
             <br />
             <div class="form-group">
