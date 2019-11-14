@@ -24,6 +24,6 @@ namespace Capstone.Web.Models
         public int NumberOfAnimalSpecies { get; set; }
         public List<Weather> Forecast { get; set; }
         public string Image { get; set; }
-
+        public int IsCelsius { get; set; } = 0;
     }
 }
