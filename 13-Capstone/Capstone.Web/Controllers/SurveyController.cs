@@ -13,40 +13,38 @@ namespace Capstone.Web.Controllers
         ISurveyDao surveyDao;
         IParkDao parkDao;
 
-        public SurveyController(ISurveyDao surveyDao, IParkDao parkDao)
+        public SurveyController(ISurveyDao surveyDao, IParkDao parkDao) //we initialize our park and survey
         {
             this.surveyDao = surveyDao;
             this.parkDao = parkDao;
         }
 
-        public IActionResult Index()
+        public IActionResult Index() //we create a new survey and get a list of parks
         {
             Survey survey = new Survey();
             survey.ParkList = parkDao.GetAllParks();
 
-            return View(survey);
+            return View(survey); //create new view bound to our survey
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] 
         public IActionResult Index(Survey survey)
         {
-            if(!ModelState.IsValid)
+            if(!ModelState.IsValid) //if it is not valid ..we don't submit our survey and go back to index
             {
                 survey.ParkList = parkDao.GetAllParks();
                 return View(survey);
             }
 
-            surveyDao.SaveSurvey(survey);
+            surveyDao.SaveSurvey(survey);//submit our survey
 
-            return RedirectToAction("FavoritePark");
+            return RedirectToAction("FavoritePark"); //otherwise we redirect to favorite park
         }
         public IActionResult FavoritePark()
         {
             List<Survey> surveys = surveyDao.FavoritePark();
-            return View(surveys);
+            return View(surveys); // binds of list of surveys to fav park
         }
-        
-       
     }
 }

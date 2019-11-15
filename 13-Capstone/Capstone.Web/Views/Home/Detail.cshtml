@@ -43,6 +43,7 @@
     }
     else
     {
+        //C IS FOR  $ AND 2 FOR TWO DECIMAL PTS
         <li>Entry to the park is only @(Model.EntryFee.ToString("C2")).</li>
     }
 </ul>
@@ -77,6 +78,7 @@
                     <br />
                     @if (Model.IsCelsius == 1)
                     {
+                        //&#176 is the html for the degree sign
                         <span><strong>Low </strong>@weather.TempConvert(weather.Low).ToString("N0")&#176;C</span>
 
                         <span><strong>High </strong>@weather.TempConvert(weather.High).ToString("N0")&#176;C</span>
@@ -92,7 +94,7 @@
         </div>
     }
 </div>
-
+@*Session data: sends IsCelsius for a value of 0 or 1 and that is what we interpret in the controller*@
 <form asp-action="Detail" asp-route-parkCode="@Model.ParkCode">
     <button name="IsCelsius" type="submit" value="0">Fahrenheit</button>
     <button name="IsCelsius" type="submit" value="1">Celsius</button>

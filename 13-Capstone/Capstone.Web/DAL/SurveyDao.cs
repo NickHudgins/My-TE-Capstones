@@ -51,7 +51,6 @@ namespace Capstone.Web.DAL
         public List<Survey> FavoritePark()
         {
             List<Survey> surveys = new List<Survey>();
-
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -72,7 +71,6 @@ namespace Capstone.Web.DAL
 
                         surveys.Add(survey);
                     }
-
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -80,7 +78,6 @@ namespace Capstone.Web.DAL
             {
 
             }
-
             return surveys;
         }
     }
