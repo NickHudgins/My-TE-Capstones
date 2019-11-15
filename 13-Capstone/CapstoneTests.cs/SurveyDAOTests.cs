@@ -13,26 +13,26 @@ namespace CapstoneTests.cs
     public class SurveyDAOTests
     {
 
-        protected string ConnectionString = "Data Source=.\\sqlexpress;Initial Catalog=NPGeek;Integrated Security=True";
+        protected string connectionString = "Data Source=.\\sqlexpress;Initial Catalog=NPGeek;Integrated Security=True";
 
         private TransactionScope transaction;
         private ISurveyDao surveyDao;
 
         public SurveyDAOTests()
         {
-            surveyDao = new SurveyDao(ConnectionString);
+            surveyDao = new SurveyDao(connectionString);
         }
 
         [TestInitialize]
         public void Setup()
         {
-            //transaction = new TransactionScope();
+            transaction = new TransactionScope();
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            //transaction.Dispose();
+            transaction.Dispose();
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace CapstoneTests.cs
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO park (parkCode, parkName, state, acreage, elevationInFeet, milesOfTrail, numberOfCampsites, climate, yearFounded, annualVisitorCount, inspirationalQuote, inspirationalQuoteSource, parkDescription, entryFee, numberOfAnimalSpecies) VALUES ('TEST', 'TestPark', 'Ohio', 1, 1, 1, 1, 'hot', 1999, 1, 'testquote', 'me', 'thisparkdoesntexist', 1, 1);", conn);
@@ -76,7 +76,7 @@ namespace CapstoneTests.cs
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO park (parkCode, parkName, state, acreage, elevationInFeet, milesOfTrail, numberOfCampsites, climate, yearFounded, annualVisitorCount, inspirationalQuote, inspirationalQuoteSource, parkDescription, entryFee, numberOfAnimalSpecies) VALUES ('TEST', 'TestPark', 'Ohio', 1, 1, 1, 1, 'hot', 1999, 1, 'testquote', 'me', 'thisparkdoesntexist', 1, 1);", conn);
@@ -113,7 +113,7 @@ namespace CapstoneTests.cs
 
         protected int GetRowCount(string table)
         {
-            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand($"SELECT COUNT(*) FROM {table}", conn); //get # rows after adding survey
