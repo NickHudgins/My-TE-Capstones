@@ -36,7 +36,7 @@ namespace Capstone.Web.Controllers
                 HttpContext.Session.SetString("IsCelsius", IsCelsius);
             }
             
-            Park park = parkDao.GetPark(parkCode);
+            Park park = parkDao.GetParkWithForecast(parkCode);
             park.IsCelsius = Convert.ToInt32(HttpContext.Session.GetString("IsCelsius"));
             return View(park);
         }

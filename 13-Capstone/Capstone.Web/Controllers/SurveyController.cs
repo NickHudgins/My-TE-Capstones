@@ -41,8 +41,6 @@ namespace Capstone.Web.Controllers
 
             return RedirectToAction("FavoritePark");
         }
-
-
         public IActionResult FavoritePark()
         {
             List<Survey> surveys = surveyDao.FavoritePark();

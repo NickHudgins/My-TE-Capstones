@@ -53,13 +53,12 @@ namespace Capstone.Web.Models
             }
         }
 
-
         public decimal TempConvert(int temp)
         {
+
             decimal convertedTemp = (Convert.ToDecimal((temp - 32) / 1.8));
             return convertedTemp;
         }
-
 
         public string TempWarningMsg
         {
@@ -79,7 +78,6 @@ namespace Capstone.Web.Models
                 {
                     tempMsg = tempMsg + "Temperatures are expected to change. Please wear breathable layers.";
                 }
-
                 return tempMsg;
             }
         }
@@ -89,7 +87,6 @@ namespace Capstone.Web.Models
             get
             {
                 string forecastMsg = "";
-
                 if (Forecast == "rain")
                 {
                     forecastMsg = "Please pack rain gear and wear waterproof shoes!";
@@ -113,8 +110,6 @@ namespace Capstone.Web.Models
                 return forecastMsg;
             }
         }
-
-
     }
 }
 
