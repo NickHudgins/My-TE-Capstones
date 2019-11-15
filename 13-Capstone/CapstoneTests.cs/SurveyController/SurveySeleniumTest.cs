@@ -8,23 +8,22 @@ using System.Text;
 
 namespace CapstoneTests.cs.SurveyController
 {
-    [TestClass]
-    class SurveySeleniumTest
+    public class SurveySeleniumTest
     {
         private ChromeDriver chromeDriver;
         private WebDriverWait wait;
-        
+
         public SurveySeleniumTest(ChromeDriver chromeDriver)
         {
             this.chromeDriver = chromeDriver;
             this.wait = new WebDriverWait(chromeDriver, new TimeSpan(0, 0, 0, 10));
         }
-
+        
         public IWebElement ParkSelector
         {
             get
             {
-                return chromeDriver.FindElement(By.Id("ParkName"));
+                return chromeDriver.FindElement(By.Id("ParkCode"));
             }
         }
 
@@ -32,7 +31,7 @@ namespace CapstoneTests.cs.SurveyController
         {
             get
             {
-                return chromeDriver.FindElement(By.Id("Email"));
+                return chromeDriver.FindElement(By.Id("EmailAddress"));
             }
         }
 
@@ -56,15 +55,15 @@ namespace CapstoneTests.cs.SurveyController
         {
             get
             {
-                return chromeDriver.FindElement(By.Id("Submit"));
+                return chromeDriver.FindElement(By.Id("submit"));
             }
         }
 
-        public IWebElement HomeElement
+        public IWebElement Survey
         {
             get
             {
-                return chromeDriver.FindElement(By.Id("Home"));
+                return chromeDriver.FindElement(By.Id("survey"));
             }
         }
 
@@ -73,26 +72,27 @@ namespace CapstoneTests.cs.SurveyController
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(location));
         }
 
+        
         public IWebElement SurveyEmail(string email)
         {
-            SelectElement ParkSelector = new SelectElement(chromeDriver.FindElement(By.Id("ParkName")));
-            ParkSelector.SelectByValue("Cuyahoga Valley National Park");
+            SelectElement ParkSelector = new SelectElement(chromeDriver.FindElement(By.Id("ParkCode")));
+            ParkSelector.SelectByValue("CVNP");
 
-            WaitForElement(By.Id("Email"));
+            WaitForElement(By.Id("EmailAddress"));
             EmailBox.Clear();
             EmailBox.SendKeys(email);
 
             SelectElement StateSelector = new SelectElement(chromeDriver.FindElement(By.Id("State")));
-            ParkSelector.SelectByValue("Ohio");
+            StateSelector.SelectByValue("OH");
 
-            SelectElement ActivitySelector = new SelectElement(chromeDriver.FindElement(By.Id("ActivityLevel")));
-            ActivitySelector.SelectByValue("Active");
+            IList<IWebElement> radioSelect = chromeDriver.FindElements(By.Id("ActivityLevel"));
+            radioSelect[0].Click();
 
-            WaitForElement(By.Id("Submit"));
+            WaitForElement(By.Id("submit"));
             SubmitButton.Click();
 
-            WaitForElement(By.Id("Home"));
-            return HomeElement;
+            WaitForElement(By.Id("survey"));
+            return Survey;
         }
     }
 }
