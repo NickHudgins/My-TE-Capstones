@@ -77,10 +77,7 @@ namespace Capstone.Web.DAL
             }
 
             cmd.CommandText = "SELECT * FROM weather WHERE parkCode = @parkCode ORDER BY fiveDayForecastValue";
-            //GET FORECAST FOR ONE PARK THAT WAS SELECTED AND SORT BY DAY
-            //using (SqlCommand weathercmd = new SqlCommand("SELECT * FROM weather WHERE parkCode = @parkCode ORDER BY fiveDayForecastValue", conn))
-            //{
-                //weathercmd.Parameters.AddWithValue("@parkCode", park.ParkCode);
+         
                 using (SqlDataReader weatherReader = cmd.ExecuteReader())
                 {
                     park.Forecast = new List<Weather>();
@@ -96,9 +93,9 @@ namespace Capstone.Web.DAL
                             ParkCode = Convert.ToString(weatherReader["parkCode"])
                         });
                     }
-                    //weatherReader.Close();
+                
                 }
-            //}
+           
             return park;
 
         }

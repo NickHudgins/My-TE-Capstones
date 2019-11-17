@@ -103,10 +103,6 @@ namespace Capstone.Web.Models
                 {
                     forecastMsg = "Please pack sunblock!";
                 }
-                else if (Forecast == "partly cloudy")
-                {
-                    forecastMsg = "Please pack sunblock!";
-                }
                 return forecastMsg;
             }
         }

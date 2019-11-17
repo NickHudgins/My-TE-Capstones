@@ -15,19 +15,20 @@ namespace capstonetests.cs.surveycontroller
     public class SurveyTest
     {
         private TransactionScope transaction;
-
+        //actual selenium tests
         [TestInitialize]
         public void Initialize()
         {
             transaction = new TransactionScope();
         }
-
+        //make sure everything is disposed of and not saved 
         [TestCleanup]
         public void Cleanup()
         {
             transaction.Dispose();
         }
 
+        //method that will go to the page on line var url and navigate 
         [TestMethod]
         public void SurveyEntryTest()
         {
@@ -43,7 +44,7 @@ namespace capstonetests.cs.surveycontroller
 
                 SurveySeleniumTest surveySelenium = new SurveySeleniumTest(chromeDriver);
 
-                IWebElement result = surveySelenium.SurveyEmail("EmailAddress@smail.com");
+                IWebElement result = surveySelenium.SurveyEmail("EmailAddress@smail.com"); //grab and insert the email
 
                 Assert.IsNotNull(result);
                 chromeDriver.Close();
